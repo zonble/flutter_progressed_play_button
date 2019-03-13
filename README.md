@@ -1,14 +1,21 @@
 # flutter_progressed_play_button
 
-A new Flutter package.
+Presents a "play button" with a progress drawn as an arc around the icon.
 
-## Getting Started
+The widget has two state. You can decide to draw the progress or not by
+specifying the [showProgress] property.
 
-This project is a starting point for a Dart
-[package](https://flutter.io/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
+When you wan to show the progress, just set it to the [progress] property. The
+values could range from 0.0 to 1.0.
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.io/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+## Installation
+
+Add the following line to your pubspec.yaml file of your Flutter project:
+
+```yaml
+dependencies:
+  flutter_progressed_play_button:
+    git: "git@gitlab.kkinternal.com:xddd/flutter_progressed_play_button.git"
+```
+
+Then call `flutter`

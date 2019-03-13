@@ -1,16 +1,28 @@
 library flutter_progressed_play_button;
 
+/// A simple Flutter widget that presents a "play button" with a progress drawn as
+/// an arc around the icon.
+
 import 'dart:math';
 import 'package:flutter/material.dart';
 
+/// A simple Flutter widget that presents a "play button" with a progress drawn as
+/// an arc around the icon.
+///
+/// The widget has two state. You can decide to draw the progress or not by
+/// specifying the [showProgress] property.
+///
+/// When you wan to show the progress, just set it to the [progress] property. The
+/// values could range from 0.0 to 1.0.
 class ProgressedPlayButton extends StatelessWidget {
   /// Handles tap events.
+
   final VoidCallback onPressed;
 
   /// The progress, 0.0 to 1.0.
   final double progress;
 
-  /// To show the progress or not.
+  /// To show progress or not.
   final bool showProgress;
 
   /// The color for the icon.
@@ -18,6 +30,9 @@ class ProgressedPlayButton extends StatelessWidget {
 
   /// The color for the background.
   final Color backgroundColor;
+
+  /// The tooltip.
+  final tooltip;
 
   /// Creates a new instance.
   ProgressedPlayButton({
@@ -27,6 +42,7 @@ class ProgressedPlayButton extends StatelessWidget {
     this.onPressed,
     this.iconColor,
     this.backgroundColor,
+    this.tooltip,
   }) : super(key: key);
 
   Color _backgroundColor(context) =>
@@ -36,64 +52,73 @@ class ProgressedPlayButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (this.showProgress == true) {
-      return ClipOval(
-        child: Material(
-          child: InkWell(
-            onTap: this.onPressed,
-            child: Padding(
-              padding: const EdgeInsets.all(4.0),
-              child: CustomPaint(
-                painter: _Painter(
-                  progress: this.progress,
-                  color: _backgroundColor(context),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(4.0),
-                  child: Icon(
-                    Icons.play_arrow,
-                    color: _backgroundColor(context),
-                  ),
+    return ClipOval(
+      child: Material(
+        child: InkWell(
+          onTap: this.onPressed,
+          child: Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: CustomPaint(
+              painter: _Painter(
+                showProgress: this.showProgress,
+                progress: this.progress,
+                iconColor: _iconColor(context),
+                backgroundColor: _backgroundColor(context),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: Icon(
+                  Icons.play_arrow,
+                  semanticLabel: tooltip,
+                  color: this.showProgress
+                      ? _backgroundColor(context)
+                      : _iconColor(context),
                 ),
               ),
             ),
           ),
         ),
-      );
-    }
-    return RaisedButton(
-      padding: EdgeInsets.all(4.0),
-      shape: CircleBorder(),
-      onPressed: onPressed,
-      elevation: 0,
-      highlightElevation: 0,
-      color: _backgroundColor(context),
-      child: Icon(
-        Icons.play_arrow,
-        color: _iconColor(context),
       ),
     );
   }
 }
 
 class _Painter extends CustomPainter {
+  final bool showProgress;
   final double progress;
-  final Color color;
+  final Color backgroundColor;
+  final Color iconColor;
 
-  _Painter({this.progress, this.color});
+  _Painter({
+    this.showProgress,
+    this.progress,
+    this.backgroundColor,
+    this.iconColor,
+  });
 
   @override
   void paint(Canvas canvas, Size size) {
+    Offset center = Offset(size.width / 2, size.height / 2);
+    double radius = min(size.width / 2, size.height / 2);
+
+    if (!showProgress) {
+      Paint fill = Paint()
+        ..color = backgroundColor
+        ..strokeCap = StrokeCap.round
+        ..style = PaintingStyle.fill
+        ..strokeWidth = 2;
+      canvas.drawCircle(center, radius, fill);
+      return;
+    }
+
     Paint line = Paint()
       ..color = Colors.grey
       ..strokeCap = StrokeCap.round
       ..style = PaintingStyle.stroke
       ..strokeWidth = 2;
-    Offset center = Offset(size.width / 2, size.height / 2);
-    double radius = min(size.width / 2, size.height / 2);
     canvas.drawCircle(center, radius, line);
 
-    line.color = this.color;
+    line.color = this.backgroundColor;
 
     var progress = () {
       if (this.progress < 0.0) {

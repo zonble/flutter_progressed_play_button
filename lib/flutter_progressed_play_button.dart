@@ -69,8 +69,7 @@ class ProgressedPlayButton extends StatelessWidget {
                 iconColor: _iconColor(context),
                 backgroundColor: _backgroundColor(context),
               ),
-              child: Padding(
-                padding: const EdgeInsets.all(5.0),
+              child: Center(
                 child: Icon(
                   Icons.play_arrow,
                   size: iconSize,

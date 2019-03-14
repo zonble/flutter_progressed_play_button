@@ -22,6 +22,9 @@ class ProgressedPlayButton extends StatelessWidget {
   /// The progress, 0.0 to 1.0.
   final double progress;
 
+  /// Size of the icon.
+  final double iconSize;
+
   /// To show progress or not.
   final bool showProgress;
 
@@ -42,11 +45,12 @@ class ProgressedPlayButton extends StatelessWidget {
     this.onPressed,
     this.iconColor,
     this.backgroundColor,
+    this.iconSize,
     this.tooltip,
   }) : super(key: key);
 
   Color _backgroundColor(context) =>
-      iconColor ?? Theme.of(context).primaryColor;
+      backgroundColor ?? Theme.of(context).primaryColor;
 
   Color _iconColor(context) => iconColor ?? Colors.white;
 
@@ -69,6 +73,7 @@ class ProgressedPlayButton extends StatelessWidget {
                 padding: const EdgeInsets.all(5.0),
                 child: Icon(
                   Icons.play_arrow,
+                  size: iconSize,
                   semanticLabel: tooltip,
                   color: this.showProgress
                       ? _backgroundColor(context)

@@ -58,6 +58,7 @@ class ProgressedPlayButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipOval(
       child: Material(
+        color: Colors.transparent,
         child: InkWell(
           onTap: this.onPressed,
           child: Padding(
@@ -116,13 +117,12 @@ class _Painter extends CustomPainter {
     }
 
     Paint line = Paint()
-      ..color = Colors.grey
       ..strokeCap = StrokeCap.round
       ..style = PaintingStyle.stroke
       ..strokeWidth = 2;
-    canvas.drawCircle(center, radius, line);
 
-    line.color = this.backgroundColor;
+    line.color = this.backgroundColor.withAlpha(128);
+    canvas.drawCircle(center, radius, line);
 
     var progress = () {
       if (this.progress < 0.0) {
@@ -135,6 +135,7 @@ class _Painter extends CustomPainter {
 
     var arcAngle = 2 * pi * progress;
     var rect = Rect.fromCircle(center: center, radius: radius);
+    line.color = this.backgroundColor;
     canvas.drawArc(rect, -pi / 2, arcAngle, false, line);
   }
 

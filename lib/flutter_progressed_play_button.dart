@@ -28,6 +28,9 @@ class ProgressedPlayButton extends StatelessWidget {
   /// To show progress or not.
   final bool showProgress;
 
+  /// The icon used in the button.
+  final IconData icon;
+
   /// The color for the icon.
   final Color iconColor;
 
@@ -45,6 +48,7 @@ class ProgressedPlayButton extends StatelessWidget {
     this.onPressed,
     this.iconColor,
     this.backgroundColor,
+    this.icon,
     this.iconSize,
     this.tooltip,
   }) : super(key: key);
@@ -72,7 +76,7 @@ class ProgressedPlayButton extends StatelessWidget {
               ),
               child: Center(
                 child: Icon(
-                  Icons.play_arrow,
+                  this.icon ?? Icons.play_arrow,
                   size: iconSize,
                   semanticLabel: tooltip,
                   color: this.showProgress

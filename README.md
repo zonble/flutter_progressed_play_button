@@ -11,14 +11,4 @@ specifying the [showProgress] property.
 When you wan to show the progress, just set it to the [progress] property. The
 values could range from 0.0 to 1.0.
 
-## Installation
-
-Add the following line to your pubspec.yaml file of your Flutter project:
-
-```yaml
-dependencies:
-  flutter_progressed_play_button:
-    git: "git@gitlab.kkinternal.com:xddd/flutter_progressed_play_button.git"
-```
-
-Then call `flutter packages get`.
+The package is derived from the app "KKBOX Kids".

@@ -1,23 +1,23 @@
 library flutter_progressed_play_button;
 
-/// A simple Flutter widget that presents a "play button" with a progress drawn as
-/// an arc around the icon.
-
+/// A simple Flutter widget that presents a "play button" with a progress drawn
+/// as an arc around the icon.
 import 'dart:math';
+
 import 'package:flutter/material.dart';
 
-/// A simple Flutter widget that presents a "play button" with a progress drawn as
-/// an arc around the icon.
+/// A simple Flutter widget that presents a "play button" with a progress drawn
+/// as an arc around the icon.
 ///
 /// The widget has two state. You can decide to draw the progress or not by
 /// specifying the [showProgress] property.
 ///
-/// When you wan to show the progress, just set it to the [progress] property. The
-/// values could range from 0.0 to 1.0.
+/// When you wan to show the progress, just set it to the [progress] property.
+/// The values could range from 0.0 to 1.0.
 class ProgressedPlayButton extends StatelessWidget {
   /// Handles tap events.
 
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
 
   /// The progress, 0.0 to 1.0.
   final double progress;
@@ -29,27 +29,27 @@ class ProgressedPlayButton extends StatelessWidget {
   final bool showProgress;
 
   /// The icon used in the button.
-  final IconData icon;
+  final IconData? icon;
 
   /// The color for the icon.
-  final Color iconColor;
+  final Color? iconColor;
 
   /// The color for the background.
-  final Color backgroundColor;
+  final Color? backgroundColor;
 
   /// The tooltip.
   final tooltip;
 
   /// Creates a new instance.
   ProgressedPlayButton({
-    Key key,
+    Key? key,
     this.showProgress = false,
     this.progress = 1.0,
     this.onPressed,
     this.iconColor,
     this.backgroundColor,
     this.icon,
-    this.iconSize,
+    this.iconSize = 32.0,
     this.tooltip,
   }) : super(key: key);
 
@@ -59,60 +59,52 @@ class ProgressedPlayButton extends StatelessWidget {
   Color _iconColor(context) => iconColor ?? Colors.white;
 
   @override
-  Widget build(BuildContext context) {
-    return ClipOval(
+  Widget build(BuildContext context) => ClipOval(
       child: Material(
-        color: Colors.transparent,
-        child: InkWell(
-          onTap: this.onPressed,
-          child: Padding(
-            padding: const EdgeInsets.all(4.0),
-            child: CustomPaint(
-              painter: _Painter(
-                showProgress: this.showProgress,
-                progress: this.progress,
-                iconColor: _iconColor(context),
-                backgroundColor: _backgroundColor(context),
-              ),
-              child: Center(
-                child: Icon(
-                  this.icon ?? Icons.play_arrow,
-                  size: iconSize,
-                  semanticLabel: tooltip,
-                  color: this.showProgress
-                      ? _backgroundColor(context)
-                      : _iconColor(context),
-                ),
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
+          color: Colors.transparent,
+          child: InkWell(
+              onTap: onPressed,
+              child: Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: CustomPaint(
+                      painter: _Painter(
+                        showProgress: showProgress,
+                        progress: progress,
+                        iconColor: _iconColor(context),
+                        backgroundColor: _backgroundColor(context),
+                      ),
+                      child: Center(
+                          child: Icon(
+                        icon ?? Icons.play_arrow,
+                        size: iconSize,
+                        semanticLabel: tooltip,
+                        color: showProgress
+                            ? _backgroundColor(context)
+                            : _iconColor(context),
+                      )))))));
 }
 
 class _Painter extends CustomPainter {
   final bool showProgress;
   final double progress;
-  final Color backgroundColor;
-  final Color iconColor;
+  final Color? backgroundColor;
+  final Color? iconColor;
 
   _Painter({
-    this.showProgress,
-    this.progress,
+    required this.showProgress,
+    required this.progress,
     this.backgroundColor,
     this.iconColor,
   });
 
   @override
   void paint(Canvas canvas, Size size) {
-    Offset center = Offset(size.width / 2, size.height / 2);
-    double radius = min(size.width / 2, size.height / 2);
+    final center = Offset(size.width / 2, size.height / 2);
+    final radius = min(size.width / 2, size.height / 2);
 
     if (!showProgress) {
-      Paint fill = Paint()
-        ..color = backgroundColor
+      final fill = Paint()
+        ..color = backgroundColor!
         ..strokeCap = StrokeCap.round
         ..style = PaintingStyle.fill
         ..strokeWidth = 2;
@@ -120,31 +112,26 @@ class _Painter extends CustomPainter {
       return;
     }
 
-    Paint line = Paint()
+    final line = Paint()
       ..strokeCap = StrokeCap.round
       ..style = PaintingStyle.stroke
       ..strokeWidth = 2;
 
-    line.color = this.backgroundColor.withAlpha(128);
+    line.color = backgroundColor!.withAlpha(128);
     canvas.drawCircle(center, radius, line);
 
     var progress = () {
-      if (this.progress < 0.0) {
-        return 0.0;
-      } else if (this.progress > 1.0) {
-        return 1.0;
-      }
+      if (this.progress < 0.0) return 0.0;
+      if (this.progress > 1.0) return 1.0;
       return this.progress;
-    }();
+    }()!;
 
     var arcAngle = 2 * pi * progress;
     var rect = Rect.fromCircle(center: center, radius: radius);
-    line.color = this.backgroundColor;
+    line.color = backgroundColor!;
     canvas.drawArc(rect, -pi / 2, arcAngle, false, line);
   }
 
   @override
-  bool shouldRepaint(CustomPainter oldDelegate) {
-    return false;
-  }
+  bool shouldRepaint(CustomPainter oldDelegate) => false;
 }

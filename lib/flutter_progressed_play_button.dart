@@ -124,7 +124,7 @@ class _Painter extends CustomPainter {
       if (this.progress < 0.0) return 0.0;
       if (this.progress > 1.0) return 1.0;
       return this.progress;
-    }()!;
+    }();
 
     var arcAngle = 2 * pi * progress;
     var rect = Rect.fromCircle(center: center, radius: radius);

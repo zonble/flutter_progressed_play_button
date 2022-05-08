@@ -72,7 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     ),
                                     ListTile(
                                       title: Text('The progress is 0.' +
-                                          ' When the button is attched to a playlist, it means the playlist has been played, but no track in the playlist has been completedly played.'),
+                                          ' When the button is attached to a playlist, it means the playlist has been played, but no track in the playlist has been completedly played.'),
                                       leading: Container(
                                           width: 40,
                                           height: 40,
@@ -81,7 +81,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     ),
                                     ListTile(
                                         title: Text('The progress is 0.5.' +
-                                            ' When the button is attched to a playlist, it means the playlist has been played, and a half of the tracks in the playlist has been completedly played.'),
+                                            ' When the button is attached to a playlist, it means the playlist has been played, and a half of the tracks in the playlist has been completedly played.'),
                                         leading: Container(
                                             width: 40,
                                             height: 40,
@@ -90,7 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                 progress: 0.5))),
                                     ListTile(
                                       title: Text('The progress is 0.5.' +
-                                          ' When the button is attched to a playlist, it means all of the tracks in the playlist has been completedly played.'),
+                                          ' When the button is attached to a playlist, it means all of the tracks in the playlist has been completely played.'),
                                       leading: Container(
                                           width: 40,
                                           height: 40,

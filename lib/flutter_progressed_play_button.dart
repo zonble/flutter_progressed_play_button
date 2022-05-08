@@ -38,10 +38,10 @@ class ProgressedPlayButton extends StatelessWidget {
   final Color? backgroundColor;
 
   /// The tooltip.
-  final tooltip;
+  final String? tooltip;
 
   /// Creates a new instance.
-  ProgressedPlayButton({
+  const ProgressedPlayButton({
     Key? key,
     this.showProgress = false,
     this.progress = 1.0,

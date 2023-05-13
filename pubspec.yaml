@@ -1,10 +1,10 @@
 name: flutter_progressed_play_button
 description: A simple Flutter widget that presents a "play button" with a progress drawn as an arc around the icon.
-version: 0.1.5
+version: 0.2.0
 homepage: https://github.com/zonble/flutter_progressed_play_button
 
 environment:
-  sdk: '>=2.17.0 <3.0.0'
+  sdk: ">=2.17.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -18,6 +18,5 @@ dev_dependencies:
 flutter:
 
 screenshots:
-  - description: 'The states of the button.'
+  - description: "The states of the button."
     path: buttons.png
-

@@ -49,7 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                       child: Text('About',
                                           style: Theme.of(context)
                                               .textTheme
-                                              .headline6),
+                                              .titleLarge),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.all(16.0),
@@ -106,7 +106,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                       child: Text('The Widget in Action',
                                           style: Theme.of(context)
                                               .textTheme
-                                              .headline6),
+                                              .titleLarge),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.all(16.0),
@@ -142,7 +142,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         child: Text('Usage',
                                             style: Theme.of(context)
                                                 .textTheme
-                                                .headline6)),
+                                                .titleLarge)),
                                     Padding(
                                       padding: const EdgeInsets.all(16.0),
                                       child: Text('''

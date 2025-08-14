@@ -12,3 +12,6 @@ ios/Runner/GeneratedPluginRegistrant.*
 .vscode
 ios
 android
+
+# FVM Version Cache
+.fvm/

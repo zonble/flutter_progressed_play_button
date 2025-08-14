@@ -1,10 +1,10 @@
 ## 0.3.0
 
-Supports Flutter 3.32.x and updates deprecated theme properties.
+Supports Flutter 3.24+ and updates deprecated theme properties.
 
-- Updated Flutter SDK constraints to support Flutter 3.32.x
+- Updated Flutter SDK constraints to support modern Flutter versions
 - Updated deprecated `headline6` to `titleLarge` 
-- Fixed CI workflow with updated GitHub Actions
+- Fixed CI workflow with updated GitHub Actions and latest stable Flutter
 
 ## 0.2.0
 

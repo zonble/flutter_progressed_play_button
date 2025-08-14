@@ -17,7 +17,6 @@ jobs:
           java-version: "17"
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: "3.32.0"
           channel: "stable"
       - name: Upgrades flutter
         run: flutter upgrade

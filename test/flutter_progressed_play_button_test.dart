@@ -4,7 +4,8 @@ import 'package:flutter_progressed_play_button/flutter_progressed_play_button.da
 
 void main() {
   group('ProgressedPlayButton', () {
-    testWidgets('creates widget with default values', (WidgetTester tester) async {
+    testWidgets('creates widget with default values',
+        (WidgetTester tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
